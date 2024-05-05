@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "SejonghospitalBold";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SejonghospitalBold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.hidden {
+  display: none;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  justify-content: center;
+}
+
+h2,
+span {
+  color: white;
+  font-family: SejonghospitalBold;
+}
+
+.clock h2 {
+  font-size: 6em;
+}
+
+li,
+.clock,
+.login,
+#todo-form,
+#quote,
+#weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#weather {
+  margin-top: 10vh;
+}
+
+#greeting {
+  color: white;
+  text-align: center;
+  padding-bottom: 2em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+form input {
+  background: #eee;
+  padding: 16px;
+  margin: 8px 0;
+  width: 85%;
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  box-shadow:
+    inset 7px 2px 10px #babebc,
+    inset -5px -5px 12px #fff;
+}
+
+li:first-child {
+  padding-top: 2em;
+}

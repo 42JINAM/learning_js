@@ -5,20 +5,50 @@
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="css/style.css" />
   <title>Momentum</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
 </head>
 
 <body>
+  <!-- weather -->
+
+  <div id="weather">
+    <span>asdsa</span>
+    <span>asdsad</span>
+  </div>
+
+  <!-- clock -->
+  <div class="clock">
+    <h2 id="clock"></h2>
+  </div>
+  <!-- login -->
+  <div class="login">
+    <form action="" class="hidden" id="login-form">
+      <input type="text" required maxlength="15" placeholder="What is your name" />
+      <input type="submit" value="Log In" />
+    </form>
+  </div>
+
+  <!-- greeting -->
+  <h1 id="greeting"></h1>
+
+  <!-- quotes -->
+  <div id="quote">
+    <span></span>
+    <br />
+    <span></span>
+  </div>
+  <!-- todo -->
   <form id="todo-form">
     <input type="text" placeholder="Write a To Do and Press Enter" required />
   </form>
   <ul id="todo-list"></ul>
-  <div id="quote">
-    <span></span>
-    <span></span>
-  </div>
+
+  <script src="js/greeting.js"></script>
+  <script src="js/clock.js"></script>
   <script src="js/quotes.js"></script>
   <script src="js/backgrounds.js"></script>
   <script src="js/todo.js"></script>
+  <script src="js/weather.js"></script>
 </body>
 
 </html>

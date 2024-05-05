@@ -1,7 +1,5 @@
-const images = ["1.gif", "2.gif"];
+const images = ["1", "2", "3", "4", "5", "6", "7"];
 
 const todaysBg = images[Math.floor(Math.random() * images.length)];
-const bgImg = document.createElement("img");
-
-bgImg.src = `img/${todaysBg}`;
-document.body.appendChild(bgImg);
+document.body.style.backgroundImage = `url('img/${todaysBg}.jpeg')`;
+console.log(todaysBg);
