@@ -1,14 +1,27 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData, useFetcher } from "react-router-dom";
+import { getContact, updateContact } from "../contacts";
+
+export async function action({ request, params }) {
+  let formData = await request.formData();
+  return updateContact(params.contactId, {
+    favorite: formData.get("favorite") === "true",
+  })
+}
+
+export async function loader({ params }) {
+  const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { contact };
+}
 
 export default function Contact() {
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  }
+  const { contact } = useLoaderData();
+
   return (
     <div id="contact">
       <div>
@@ -17,6 +30,7 @@ export default function Contact() {
           src={contact.avatar || null}
         />
       </div>
+
       <div>
         <h1>
           {contact.first || contact.last ? (
@@ -28,6 +42,7 @@ export default function Contact() {
           )}{" "}
           <Favorite contact={contact} />
         </h1>
+
         {contact.twitter && (
           <p>
             <a
@@ -38,7 +53,9 @@ export default function Contact() {
             </a>
           </p>
         )}
+
         {contact.notes && <p>{contact.notes}</p>}
+
         <div>
           <Form action="edit">
             <button type="submit">Edit</button>
@@ -61,5 +78,30 @@ export default function Contact() {
         </div>
       </div>
     </div>
-  )
+  );
+}
+
+function Favorite({ contact }) {
+  // yes, this is a `let` for later
+  const fetcher = useFetcher();
+  let favorite = contact.favorite;
+  if (fetcher.formData) {
+    favorite = fetcher.formData.get("favorite") === "true";
+  }
+  return (
+    <fetcher.Form method="post">
+      <button
+        name="favorite"
+        value={favorite ? "false" : "true"}
+        aria-label={
+          favorite
+            ? "Remove from favorites"
+            : "Add to favorites"
+        }
+      >
+        {favorite ? "★" : "☆"}
+      </button>
+    </fetcher.Form>
+
+  );
 }
